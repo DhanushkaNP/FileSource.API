@@ -1,5 +1,6 @@
 ﻿using FileSource.Abstractions;
 using FileSource.Models.Entities.ApplicationUsers;
+using FileSource.Models.Entities.Customers;
 using FileSource.Models.Entities.SysAdmins;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -21,5 +22,7 @@ namespace FileSource.Infrastructure.Persistence
         }
 
         public DbSet<SysAdmin> SysAdmin { get; set; }
+
+        public DbSet<Customer> Customer { get; set; }
     }
 }

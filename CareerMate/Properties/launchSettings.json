@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "CareerMate.API": {
+    "FileSource.API": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

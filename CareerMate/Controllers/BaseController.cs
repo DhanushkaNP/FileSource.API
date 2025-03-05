@@ -1,7 +1,7 @@
-﻿using CareerMate.EndPoints;
+﻿using FileSource.EndPoints;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CareerMate.API.Controllers
+namespace FileSource.API.Controllers
 {
     [ApiController]
     [Produces("application/json")]

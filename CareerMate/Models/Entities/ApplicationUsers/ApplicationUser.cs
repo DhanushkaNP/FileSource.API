@@ -1,4 +1,5 @@
-﻿using FileSource.Models.Entities.SysAdmins;
+﻿using FileSource.Models.Entities.Customers;
+using FileSource.Models.Entities.SysAdmins;
 using Microsoft.AspNetCore.Identity;
 using System;
 
@@ -23,6 +24,7 @@ namespace FileSource.Models.Entities.ApplicationUsers
 
         public SysAdmin SysAdmin { get; private set; }
 
+        public Customer Customer { get; private set; }
 
         public void SetFirstName(string firstName)
         {

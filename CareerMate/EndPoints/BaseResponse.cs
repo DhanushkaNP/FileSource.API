@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
 
-namespace CareerMate.EndPoints
+namespace FileSource.EndPoints
 {
     public abstract class BaseResponse
     {
