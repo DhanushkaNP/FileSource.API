@@ -1,4 +1,4 @@
-﻿using FileSource.EndPoints;
+﻿using CareerMate.EndPoints.Handlers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FileSource.API.Controllers

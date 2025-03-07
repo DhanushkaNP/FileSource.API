@@ -3,6 +3,9 @@ using System.Threading;
 using System;
 using FileSource.Abstractions.Repositories;
 using FileSource.Models.Entities.SysAdmins;
+using CareerMate.EndPoints.Handlers;
+using CareerMate.EndPoints.Queries.Users.SysAdmins;
+using FileSource.Abstractions.Models.Queries;
 
 namespace CareerMate.Infrastructure.Persistence.Repositories.SysAdmins
 {
@@ -11,5 +14,7 @@ namespace CareerMate.Infrastructure.Persistence.Repositories.SysAdmins
         Task<SysAdmin> GetSysAdminByApplicationUserId(Guid userId, CancellationToken cancellationToken);
 
         Task<bool> IsAnySysAdminExist();
+
+        Task<PagedResponse<GetSysAdminUsersListQueryItem>> GetSysAdminList(PagedQuery pagedQuery, CancellationToken cancellationToken);
     }
 }
