@@ -74,8 +74,13 @@ using (var scope = app.Services.CreateScope())
 
     try
     {
+        // Seed Roles
         var roleSeeder = services.GetRequiredService<IdentityRoleSeed>();
         await roleSeeder.SeedRoles();
+
+        // Seed SysAdmin
+        var sysAdminSeeder = services.GetRequiredService<SysAdminSeed>();
+        await sysAdminSeeder.SeedUser();
     }
     catch (Exception ex)
     {

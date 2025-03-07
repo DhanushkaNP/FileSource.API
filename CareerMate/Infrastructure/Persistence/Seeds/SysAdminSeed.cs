@@ -1,6 +1,10 @@
-﻿using FileSource.Models;
+﻿using Autofac.Core;
+using CareerMate.Infrastructure.Persistence.Repositories.SysAdmins;
+using FileSource.Models;
 using FileSource.Models.Entities.ApplicationUsers;
+using FileSource.Models.Entities.SysAdmins;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
@@ -22,27 +26,35 @@ namespace FileSource.Infrastructure.Persistence.Seeds
         {
             using (var scope = _serviceProvider.CreateScope())
             {
-                // To Do
-                // var sysAdminRepository = scope.ServiceProvider.GetRequiredService<SysAdminRepository>();
+                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
                 var userManagerService = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
-                ApplicationUser newUser = new ApplicationUser()
+                if (!await dbContext.SysAdmin.AnyAsync())
                 {
-                    Email = "sysadmin@fileSource.com",
-                    UserName = "sysadmin@fileSource.com",
-                    SecurityStamp = Guid.NewGuid().ToString(),
-                    FirstName = "First",
-                    LastName = "User",
-                };
+                    ApplicationUser newUser = new ApplicationUser()
+                    {
+                        Email = "sysadmin@fileSource.com",
+                        UserName = "sysadmin@fileSource.com",
+                        SecurityStamp = Guid.NewGuid().ToString(),
+                        FirstName = "First",
+                        LastName = "User",
+                    };
 
-                var createdUserResult = await userManagerService.CreateAsync(newUser, "Test@123");
+                    var createdUserResult = await userManagerService.CreateAsync(newUser, "Test@123");
 
-                if (!createdUserResult.Succeeded)
-                {
-                    throw new Exception(createdUserResult.Errors.FirstOrDefault().Description);
-                }
+                    if (!createdUserResult.Succeeded)
+                    {
+                        throw new Exception(createdUserResult.Errors.FirstOrDefault().Description);
+                    }
 
-                await userManagerService.AddToRoleAsync(newUser, Roles.SysAdmin);
+                    SysAdmin sysAdmin = new SysAdmin(newUser.Id);
+
+                    dbContext.SysAdmin.Add(sysAdmin);
+
+                    await dbContext.SaveChangesAsync();
+
+                    await userManagerService.AddToRoleAsync(newUser, Roles.SysAdmin);
+                }        
             }
         }
     }

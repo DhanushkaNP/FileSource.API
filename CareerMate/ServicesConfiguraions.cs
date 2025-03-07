@@ -92,6 +92,7 @@ namespace FileSource
         public static IServiceCollection RegisterSystemServices(this IServiceCollection services)
         {
             services.AddScoped<IdentityRoleSeed>();
+            services.AddScoped<SysAdminSeed>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthService, AuthService>();
 

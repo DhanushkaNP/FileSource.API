@@ -22,7 +22,7 @@ namespace FileSource.Infrastructure.Persistence.Seeds
             using (var scope = _serviceProvider.CreateScope())
             {
                 var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<ApplicationUserRoles>>();
-                List<string> roles = new List<string>() { Roles.SysAdmin };
+                List<string> roles = new List<string>() { Roles.SysAdmin, Roles.Customer };
 
                 foreach (var role in roles)
                 {
