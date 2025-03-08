@@ -14,6 +14,7 @@ using FileSource.Services.AuthServices;
 using FileSource.Services.UserServices;
 using Microsoft.Extensions.Logging;
 using Quartz;
+using FileSource.API.BackgroundJobs;
 
 namespace FileSource
 {
@@ -104,15 +105,14 @@ namespace FileSource
             // Add Quartz.NET services
             services.AddQuartz(q =>
             {
-                // Create a job : To Do
-                //var jobKey = new JobKey(nameof(UnlockDailyDiariesJob));
-                //q.AddJob<UnlockDailyDiariesJob>(opts => opts.WithIdentity(jobKey));
+                var jobKey = new JobKey(nameof(RenewLicenseBackgroundJob));
+                q.AddJob<RenewLicenseBackgroundJob>(opts => opts.WithIdentity(jobKey));
 
-                //// Create a trigger to run the job daily at 1 AM
-                //q.AddTrigger(opts => opts
-                //    .ForJob(jobKey)
-                //    .WithIdentity("UnlockDailyDiariesJob-trigger")
-                //    .WithCronSchedule("0 0 1 * * ?"));
+                // Create a trigger to run the job daily at 1 AM
+                q.AddTrigger(opts => opts
+                    .ForJob(jobKey)
+                    .WithIdentity("UnlockDailyDiariesJob-trigger")
+                    .WithCronSchedule("0 0 0 * * ?"));
             });
 
             // Add the Quartz.NET hosted service
