@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 
-namespace CareerMate.EndPoints.Handlers
+namespace FileSource.EndPoints.Handlers
 {
     public class ListResponse<T> : BaseResponse
         where T : new()

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CareerMate.EndPoints.Handlers
+namespace FileSource.EndPoints.Handlers
 {
     public class ExistsResponse : BadRequestResponse
     {

@@ -1,5 +1,7 @@
 ﻿using FileSource.Models.Entities.ApplicationUsers;
+using FileSource.Models.Entities.Licenses;
 using System;
+using System.Collections.Generic;
 
 namespace FileSource.Models.Entities.Customers
 {
@@ -15,6 +17,8 @@ namespace FileSource.Models.Entities.Customers
         public Guid ApplicationUserId { get; private set; }
 
         public ApplicationUser ApplicationUser { get; private set; }
+
+        public List<License> Licenses { get; private set; }
 
         public void Delete()
         {

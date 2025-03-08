@@ -1,4 +1,4 @@
-﻿using CareerMate.EndPoints.Handlers;
+﻿using FileSource.EndPoints.Handlers;
 using MediatR;
 using System.ComponentModel.DataAnnotations;
 

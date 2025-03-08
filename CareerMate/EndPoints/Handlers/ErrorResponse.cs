@@ -1,4 +1,4 @@
-﻿namespace CareerMate.EndPoints.Handlers
+﻿namespace FileSource.EndPoints.Handlers
 {
     public class ErrorResponse : BaseResponse
     {

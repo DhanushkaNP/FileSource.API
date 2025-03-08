@@ -2,7 +2,7 @@
 using System;
 using System.Text.Json.Serialization;
 
-namespace CareerMate.EndPoints.Handlers
+namespace FileSource.EndPoints.Handlers
 {
     public class LockedResponse : BaseResponse
     {

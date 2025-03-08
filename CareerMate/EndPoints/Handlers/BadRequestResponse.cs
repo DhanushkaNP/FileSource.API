@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
 
-namespace CareerMate.EndPoints.Handlers
+namespace FileSource.EndPoints.Handlers
 {
     public class BadRequestResponse : BaseResponse
     {

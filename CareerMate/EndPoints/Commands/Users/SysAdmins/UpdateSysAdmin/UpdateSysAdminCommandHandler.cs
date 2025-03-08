@@ -2,6 +2,7 @@
 using CareerMate.Infrastructure.Persistence.Repositories.SysAdmins;
 using FileSource.Abstractions.Exceptions;
 using FileSource.Abstractions.Services;
+using FileSource.EndPoints.Handlers;
 using FileSource.Models.Entities.ApplicationUsers;
 using FileSource.Models.Entities.SysAdmins;
 using MediatR;

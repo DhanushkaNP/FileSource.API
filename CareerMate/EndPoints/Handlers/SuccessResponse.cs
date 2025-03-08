@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
-namespace CareerMate.EndPoints.Handlers
+namespace FileSource.EndPoints.Handlers
 {
     public class SuccessResponse : BaseResponse
     {

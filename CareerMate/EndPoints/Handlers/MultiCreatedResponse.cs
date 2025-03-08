@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System;
 
-namespace CareerMate.EndPoints.Handlers
+namespace FileSource.EndPoints.Handlers
 {
     public class MultiCreatedResponse : BaseResponse
     {
