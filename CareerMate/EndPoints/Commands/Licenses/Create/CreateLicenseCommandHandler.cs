@@ -30,7 +30,7 @@ namespace FileSource.EndPoints.Commands.Licenses.Create
 
             await _licenseRepository.SaveChangesAsync(cancellationToken);
 
-            return new SuccessResponse();
+            return new CreatedResponse(newLicense.Id);
         }
     }
 }

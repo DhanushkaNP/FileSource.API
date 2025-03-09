@@ -1,4 +1,6 @@
-﻿using FileSource.Models.Entities.Licenses;
+﻿using FileSource.Abstractions.Models.Queries;
+using FileSource.EndPoints.Handlers;
+using FileSource.Models.Entities.Licenses;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -23,7 +25,38 @@ namespace FileSource.Infrastructure.Persistence.Repositories.Licenses
 
         public override Task<License> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return GetQueryable()
+                .FirstOrDefaultAsync(l => l.Id == id, cancellationToken);
+        }
+
+        public async Task<PagedResponse<License>> GetLicenseList(PagedQuery pagedQuery, CancellationToken cancellationToken)
+        {
+            IQueryable<License> query = GetQueryable().Where(s => s.DeletedAt == null).AsNoTracking();
+
+            if (!string.IsNullOrEmpty(pagedQuery.Search))
+            {
+                query = query
+                    .Where(l => l.Id ==  new Guid(pagedQuery.Search));
+            }
+
+            int count = await query.CountAsync();
+
+            query = query.OrderByDescending(sa => sa.CreatedAt)
+                 .Skip(pagedQuery.Offset)
+                 .Take(pagedQuery.Limit);
+
+            List<License> licenseList = await query.ToListAsync();
+
+            return new PagedResponse<License>
+            {
+                Items = licenseList,
+                Meta = new PagedResponseMetaData()
+                {
+                    Offset = pagedQuery.Offset,
+                    Count = count
+                }
+            };
+
         }
 
         private IQueryable<License> GetQueryable()

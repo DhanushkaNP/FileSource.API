@@ -40,5 +40,10 @@ namespace FileSource.Models.Entities.Licenses
         {
             TodayLimit = todayLimit;
         }
+
+        public void Delete()
+        {
+            DeletedAt = DateTime.UtcNow;
+        }
     }
 }
